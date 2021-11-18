@@ -9,12 +9,15 @@ import SwiftUI
 
 @main
 struct BudgetAppApp: App {
-    let persistenceController = PersistenceController.shared
+    
+    let viewContext = PersistenceController.shared.viewContext
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+            
+            ContentView(viewModel: BudgetListViewModel(viewContext: viewContext))
+                .environment(\.managedObjectContext, viewContext)
+            
         }
     }
 }

@@ -13,6 +13,8 @@
 		E0B4E0D32746FF66007ED7C5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0B4E0D22746FF66007ED7C5 /* Preview Assets.xcassets */; };
 		E0B4E0D52746FF66007ED7C5 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B4E0D42746FF66007ED7C5 /* Persistence.swift */; };
 		E0B4E0D82746FF66007ED7C5 /* BudgetApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E0B4E0D62746FF66007ED7C5 /* BudgetApp.xcdatamodeld */; };
+		E0B4E0E02747078C007ED7C5 /* AddBudget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B4E0DF2747078C007ED7C5 /* AddBudget.swift */; };
+		E0B4E0E227470D3C007ED7C5 /* BudgetViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B4E0E127470D3C007ED7C5 /* BudgetViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +25,8 @@
 		E0B4E0D22746FF66007ED7C5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E0B4E0D42746FF66007ED7C5 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		E0B4E0D72746FF66007ED7C5 /* BudgetApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BudgetApp.xcdatamodel; sourceTree = "<group>"; };
+		E0B4E0DF2747078C007ED7C5 /* AddBudget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudget.swift; sourceTree = "<group>"; };
+		E0B4E0E127470D3C007ED7C5 /* BudgetViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +61,8 @@
 			children = (
 				E0B4E0CB2746FF65007ED7C5 /* BudgetAppApp.swift */,
 				E0B4E0CD2746FF65007ED7C5 /* ContentView.swift */,
+				E0B4E0E127470D3C007ED7C5 /* BudgetViewModel.swift */,
+				E0B4E0DE2747077F007ED7C5 /* AddBudget */,
 				E0B4E0CF2746FF66007ED7C5 /* Assets.xcassets */,
 				E0B4E0D42746FF66007ED7C5 /* Persistence.swift */,
 				E0B4E0D62746FF66007ED7C5 /* BudgetApp.xcdatamodeld */,
@@ -71,6 +77,14 @@
 				E0B4E0D22746FF66007ED7C5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E0B4E0DE2747077F007ED7C5 /* AddBudget */ = {
+			isa = PBXGroup;
+			children = (
+				E0B4E0DF2747078C007ED7C5 /* AddBudget.swift */,
+			);
+			path = AddBudget;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,6 +160,8 @@
 				E0B4E0D52746FF66007ED7C5 /* Persistence.swift in Sources */,
 				E0B4E0CE2746FF65007ED7C5 /* ContentView.swift in Sources */,
 				E0B4E0D82746FF66007ED7C5 /* BudgetApp.xcdatamodeld in Sources */,
+				E0B4E0E227470D3C007ED7C5 /* BudgetViewModel.swift in Sources */,
+				E0B4E0E02747078C007ED7C5 /* AddBudget.swift in Sources */,
 				E0B4E0CC2746FF65007ED7C5 /* BudgetAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
