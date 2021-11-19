@@ -8,53 +8,6 @@
 import SwiftUI
 import CoreData
 
-class BudgetListViewModel: NSObject, ObservableObject {
-    private var viewContext: NSManagedObjectContext
-    
-    @Published var sheetActive: Bool = false
-    
-    @Published var budgets = [BudgetViewModel]()
-    
-    private let fetchedResultsController: NSFetchedResultsController<BudgetEntity>
-    
-    static var fetchRequest: NSFetchRequest<BudgetEntity> {
-        let request = BudgetEntity.fetchRequest()
-        request.sortDescriptors = []
-        return request
-    }
-    
-    init(viewContext: NSManagedObjectContext){
-        
-        self.viewContext = viewContext
-        
-        fetchedResultsController = NSFetchedResultsController(fetchRequest: BudgetListViewModel.fetchRequest, managedObjectContext: viewContext, sectionNameKeyPath: nil, cacheName: nil)
-        super.init()
-        self.fetchedResultsController.delegate = self
-        
-        do {
-            try fetchedResultsController.performFetch()
-            
-            guard let budgets = fetchedResultsController.fetchedObjects else { return }
-            
-            DispatchQueue.main.async {
-                self.budgets = budgets.map(BudgetViewModel.init)
-            }
-            
-        }catch let error {
-            print("DEBUG: \(error.localizedDescription)")
-        }
-    }
-}
-
-extension BudgetListViewModel: NSFetchedResultsControllerDelegate {
-    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        guard let budgets = controller.fetchedObjects as? [BudgetEntity] else { return }
-        DispatchQueue.main.async {
-            self.budgets = budgets.map(BudgetViewModel.init)
-        }
-    }
-}
-
 struct ContentView: View {
     
     @Environment(\.managedObjectContext) var viewContext
@@ -63,6 +16,13 @@ struct ContentView: View {
     
     init(viewModel: BudgetListViewModel){
         _viewModel = StateObject(wrappedValue: viewModel)
+    }
+    
+    func deleteBudget(at offsets: IndexSet){
+        offsets.forEach { index in
+            let budget = viewModel.budgets[index]
+            viewModel.deleteBudget(budgetId: budget.id)
+        }
     }
 
     var body: some View {
@@ -73,9 +33,9 @@ struct ContentView: View {
                         HStack {
                             Text(budget.title)
                                 .frame(maxWidth: .infinity, alignment: .leading)
-                            Text("\(budget.amount)")
+                            Text("\(budget.amount, specifier: "%.2f")")
                         }
-                    }
+                    }.onDelete(perform: deleteBudget)
                 }
             }
             .navigationTitle("Budget App")
@@ -89,7 +49,6 @@ struct ContentView: View {
                     } label: {
                         Text("Add Budget")
                     }
-
                 }
             }
         }

@@ -8,30 +8,6 @@
 import SwiftUI
 import CoreData
 
-extension AddBudget {
-    class ViewModel: ObservableObject {
-        @Published var title: String = ""
-        @Published var amount: String = ""
-        
-        var viewContext: NSManagedObjectContext
-        
-        init(viewContext: NSManagedObjectContext){
-            self.viewContext = viewContext
-        }
-        
-        func addBudget(){
-            let budget = BudgetEntity(context: viewContext)
-            budget.title = title
-            budget.amount = Double(amount) ?? 0
-            do {
-                try viewContext.save()
-            }catch {
-                print("DEBUG: \(error.localizedDescription)")
-            }
-        }
-    }
-}
-
 struct AddBudget: View {
     
     @Environment(\.dismiss) var dismiss
